@@ -1,0 +1,1 @@
+This repository features the the code, written for the lab of the course "Operating Systems", taken during the 6th semester at the School of Electrical and Computer Engineering of the National Techincal University of Athens.
