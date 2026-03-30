@@ -193,8 +193,6 @@ void run_dispatcher(const char *filename, int pipe_fe_to_disp[2], int pipe_disp_
 void run_frontend(int pipe_fe_to_disp[2], int pipe_disp_to_fe[2], pid_t dispatcher_pid) {
     close(pipe_fe_to_disp[0]);
     close(pipe_disp_to_fe[1]);
-    printf("=== ?~Zα?~Dανεμημένη ?~Qναζή?~Dη?~Cη Χα?~Aακ?~Dή?~A?~Iν (Front-End) ===\n");
-    printf("?~Uν?~Dολέ?~B: add, status, search <char>, exit\n> ");
     fflush(stdout);
 
     fd_set readfds;
@@ -238,7 +236,7 @@ void run_frontend(int pipe_fe_to_disp[2], int pipe_disp_to_fe[2], pid_t dispatch
                 kill(dispatcher_pid, SIGUSR1);
             }
             else {
-                printf("?~Fγν?~I?~C?~Dη εν?~Dολή.\n> ");
+                printf("εντολή.\n> ");
                 fflush(stdout);
             }
         }
