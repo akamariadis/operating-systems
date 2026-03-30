@@ -236,7 +236,6 @@ void run_frontend(int pipe_fe_to_disp[2], int pipe_disp_to_fe[2], pid_t dispatch
                 kill(dispatcher_pid, SIGUSR1);
             }
             else {
-                printf("εντολή.\n> ");
                 fflush(stdout);
             }
         }
@@ -245,7 +244,6 @@ void run_frontend(int pipe_fe_to_disp[2], int pipe_disp_to_fe[2], pid_t dispatch
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        printf("Χ?~Aή?~Cη: ./askisi4 <α?~A?~Gείο_ει?~C?~Lδο?~E>\n");
         exit(1);
     }
 
