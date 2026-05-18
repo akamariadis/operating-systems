@@ -11,11 +11,9 @@ do { errno = ret; perror(msg); } while (0)
 
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
-void *increase_fn(void *arg)
-{
+void *increase_fn(void *arg) {
     int i;
     volatile int *ip = arg;
-
     fprintf(stderr, "About to increase variable %d times\n", N);
     for (i = 0; i < N; i++) {
         pthread_mutex_lock(&lock);
@@ -27,11 +25,9 @@ void *increase_fn(void *arg)
     return NULL;
 }
 
-void *decrease_fn(void *arg)
-{
+void *decrease_fn(void *arg) {
     int i;
     volatile int *ip = arg;
-
     fprintf(stderr, "About to decrease variable %d times\n", N);
     for (i = 0; i < N; i++) {
         pthread_mutex_lock(&lock);
@@ -43,36 +39,27 @@ void *decrease_fn(void *arg)
     return NULL;
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     int val, ret, ok;
     pthread_t t1, t2;
-
     val = 0;
-
     ret = pthread_create(&t1, NULL, increase_fn, &val);
     if (ret) {
         perror_pthread(ret, "pthread_create");
         exit(1);
     }
-
     ret = pthread_create(&t2, NULL, decrease_fn, &val);
     if (ret) {
         perror_pthread(ret, "pthread_create");
         exit(1);
     }
-
     ret = pthread_join(t1, NULL);
     if (ret)
         perror_pthread(ret, "pthread_join");
-
     ret = pthread_join(t2, NULL);
     if (ret)
         perror_pthread(ret, "pthread_join");
-
     ok = (val == 0);
-
     printf("%sOK, val = %d.\n", ok ? "" : "NOT ", val);
-
     return ok;
 }
